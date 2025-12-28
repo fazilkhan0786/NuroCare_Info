@@ -30,10 +30,10 @@ overflow-x:hidden;
 }
 
 section{padding:clamp(4rem,8vw,9rem) 6%}
-img{max-width:100%;display:block}
+img{width:100%;display:block}
 a{text-decoration:none;color:inherit}
 
-/* ================= NAV ================= */
+/* NAV */
 nav{
 position:fixed;top:0;left:0;right:0;
 background:rgba(10,14,23,.85);
@@ -46,9 +46,8 @@ max-width:1400px;
 margin:auto;
 padding:1.2rem clamp(1rem,4vw,4rem);
 display:flex;
-align-items:center;
 justify-content:space-between;
-gap:1.5rem;
+align-items:center;
 }
 .logo{
 display:flex;align-items:center;gap:12px;
@@ -60,9 +59,8 @@ background:var(--gradient);
 .logo img{height:42px;border-radius:12px;box-shadow:var(--glow)}
 .nav-links{
 display:flex;
+gap:1.6rem;
 align-items:center;
-gap:clamp(.8rem,2vw,1.6rem);
-flex-wrap:wrap;
 }
 .nav-links a{color:var(--muted);font-weight:500}
 .btn-demo{
@@ -73,7 +71,7 @@ color:#000;
 font-weight:700;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero{
 min-height:100vh;
 display:flex;
@@ -100,7 +98,7 @@ background:var(--gradient);
 -webkit-text-fill-color:transparent;
 }
 .hero h2{color:var(--primary);margin:1rem 0}
-.hero p{color:var(--muted);max-width:600px;font-size:1.1rem}
+.hero p{color:var(--muted);max-width:600px}
 .btn-hero{
 margin-top:2rem;
 display:inline-block;
@@ -122,17 +120,13 @@ border-radius:28px;
 box-shadow:var(--glow), inset 0 0 60px rgba(0,212,255,.08);
 transform:rotateY(14deg) rotateX(8deg);
 animation:float3d 8s ease-in-out infinite;
-transition:.8s;
-}
-.floating-card:hover{
-transform:rotateY(4deg) rotateX(2deg) translateY(-20px);
 }
 @keyframes float3d{
 0%,100%{transform:rotateY(14deg) rotateX(8deg) translateY(0)}
 50%{transform:rotateY(20deg) rotateX(12deg) translateY(-28px)}
 }
 
-/* ================= TITLES ================= */
+/* TITLES */
 .section-title{text-align:center;margin-bottom:4rem}
 .section-title p{color:var(--primary);letter-spacing:3px;font-weight:700}
 .section-title h2{
@@ -143,7 +137,7 @@ background:var(--gradient);
 -webkit-text-fill-color:transparent;
 }
 
-/* ================= GRID & CARDS ================= */
+/* GRID & CARDS */
 .grid{
 display:grid;
 gap:2rem;
@@ -158,7 +152,7 @@ transition:.4s;
 }
 .card:hover{transform:translateY(-10px);box-shadow:var(--glow)}
 
-/* ================= TEAM ================= */
+/* TEAM */
 .team-card{
 display:flex;
 flex-direction:column;
@@ -167,15 +161,31 @@ text-align:center;
 }
 .team-card img{
 height:260px;
-width:100%;
 object-fit:cover;
 border-radius:20px;
 }
 .team-card h3{margin-top:1rem}
 .team-card p{color:var(--muted);margin:.4rem 0 1rem}
-.socials a{margin:0 .4rem;color:var(--primary)}
+.socials{
+display:flex;
+gap:.8rem;
+}
+.socials a{
+width:40px;height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(0,212,255,.15);
+color:var(--primary);
+transition:.3s;
+}
+.socials a:hover{
+background:var(--gradient);
+color:#000;
+}
 
-/* ================= LEGAL ================= */
+/* LEGAL */
 .legal-box{
 max-width:900px;
 margin:auto;
@@ -188,7 +198,7 @@ box-shadow:var(--glow);
 .legal-box h3{margin-top:2.2rem;color:var(--primary)}
 .legal-box ul{padding-left:1.2rem;margin:1rem 0}
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 footer{
 background:#060a10;
 padding:4rem 6% 2rem;
@@ -199,8 +209,25 @@ display:grid;
 gap:2.5rem;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 }
-.footer-title{font-weight:700;margin-bottom:1rem}
-.footer-item{color:var(--muted);margin:.4rem 0}
+.footer-socials{
+display:flex;
+gap:1rem;
+margin-top:1rem;
+}
+.footer-socials a{
+width:42px;height:42px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(0,212,255,.15);
+color:var(--primary);
+transition:.3s;
+}
+.footer-socials a:hover{
+background:var(--gradient);
+color:#000;
+}
 .copyright{
 margin-top:3rem;
 text-align:center;
@@ -208,7 +235,7 @@ color:#64748b;
 font-size:.9rem;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 @media(max-width:900px){
 .hero-grid{grid-template-columns:1fr;text-align:center}
 .hero p{margin:auto}
@@ -220,239 +247,236 @@ font-size:.9rem;
 <body>
 
 <nav>
-  <div class="nav-inner">
-    <div class="logo">
-      <img src="PHOTO-2025-11-01-12-14-25.jpg">
-      NuroCare
-    </div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#ecosystem">Ecosystem</a>
-      <a href="#ai">AI</a>
-      <a href="#team">Team</a>
-      <a href="#privacy">Legal</a>
-      <a href="#contact" class="btn-demo">Book Demo</a>
-    </div>
-  </div>
+<div class="nav-inner">
+<div class="logo">
+<img src="PHOTO-2025-11-01-12-14-25.jpg">
+NuroCare
+</div>
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#ecosystem">Ecosystem</a>
+<a href="#ai">AI</a>
+<a href="#team">Team</a>
+<a href="#privacy">Legal</a>
+<a href="#contact" class="btn-demo">Book Demo</a>
+</div>
+</div>
 </nav>
 
 <section class="hero" id="home">
-  <div class="hero-grid">
-    <div>
-      <h1>Healthcare Reimagined<br>With AI</h1>
-      <h2>One Platform • 14 Roles • Zero Friction</h2>
-      <p>The world’s first adaptive AI-powered health ecosystem connecting patients, doctors, labs, pharmacies, insurers and government.</p>
-      <a href="#contact" class="btn-hero">Request Early Access →</a>
-    </div>
-    <div class="hero-visual">
-      <div class="floating-card">
-        <h3 style="color:var(--accent)">98% problems solved instantly</h3>
-        <p>AI trained on real Indian healthcare workflows.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ECOSYSTEM -->
-<section id="ecosystem">
-  <div class="section-title">
-    <p>14 Dashboards</p>
-    <h2>Complete Healthcare Ecosystem</h2>
-  </div>
-  <div class="grid">
-    <div class="card">Patient • Caregiver • Doctor • Gynecologist</div>
-    <div class="card">Lab • Pharmacy • Insurance • Government</div>
-    <div class="card">Health Wallet – reports, prescriptions, insurance docs</div>
-    <div class="card">Emergency • Analytics • Admin</div>
-  </div>
-</section>
-
-<!-- AI -->
-<section id="ai">
-  <div class="section-title">
-    <p>Intelligence</p>
-    <h2>AI Capabilities</h2>
-  </div>
-  <div class="grid">
-    <div class="card">Symptom Analyzer</div>
-    <div class="card">Report Summarizer</div>
-    <div class="card">Medicine Scanner</div>
-    <div class="card">Voice-to-Symptom (22+ languages)</div>
-    <div class="card">Diet Generator</div>
-    <div class="card">Resource & Epidemic AI</div>
-  </div>
+<div class="hero-grid">
+<div>
+<h1>Healthcare Reimagined<br>With AI</h1>
+<h2>One Platform • 14 Roles • Zero Friction</h2>
+<p>The world’s first adaptive AI-powered health ecosystem connecting patients, doctors, labs, pharmacies, insurers and government.</p>
+<a href="#contact" class="btn-hero">Request Early Access →</a>
+</div>
+<div class="hero-visual">
+<div class="floating-card">
+<h3 style="color:var(--accent)">98% problems solved instantly</h3>
+<p>AI trained on real Indian healthcare workflows.</p>
+</div>
+</div>
+</div>
 </section>
 
 <!-- TEAM -->
 <section id="team">
-  <div class="section-title">
-    <p>Builders</p>
-    <h2>Meet the Team</h2>
-  </div>
-  <div class="grid">
-    <div class="card team-card">
-      <img src="dev1.jpg">
-      <h3>FazilKhan Malek</h3>
-      <p>CEO / Founder</p>
-      <div class="socials">
-        <a href="https://www.linkedin.com/in/fazilkhan-malek-392082377"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/fazilkhanm0786"><i class="fab fa-github"></i></a>
-        <a href="https://portfolio-fazilkhan-malek.vercel.app/"><i class="fas fa-globe"></i></a>
-      </div>
-    </div>
+<div class="section-title">
+<p>Builders</p>
+<h2>Meet the Team</h2>
+</div>
 
-    <div class="card team-card">
-      <img src="dev2.jpg">
-      <h3>Modi Manav</h3>
-      <p>Co-Founder</p>
-    </div>
+<div class="grid">
+<div class="card team-card">
+<img src="dev1.jpg">
+<h3>FazilKhan Malek</h3>
+<p>CEO / Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/fazilkhan-malek-392082377"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://github.com/fazilkhanm0786"><i class="fab fa-github"></i></a>
+<a href="https://portfolio-fazilkhan-malek.vercel.app/"><i class="fas fa-globe"></i></a>
+</div>
+</div>
 
-    <div class="card team-card">
-      <img src="dev3.jpg">
-      <h3>Lakum Mayank</h3>
-      <p>Co-Founder</p>
-    </div>
+<div class="card team-card">
+<img src="dev2.jpg">
+<h3>Modi Manav</h3>
+<p>Co-Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/modi-manav-n-537134339"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://github.com/modimanav07"><i class="fab fa-github"></i></a>
+</div>
+</div>
 
-    <div class="card team-card">
-      <img src="dev4.jpg">
-      <h3>Umar Chokhawala</h3>
-      <p>Co-Founder</p>
-    </div>
-  </div>
+<div class="card team-card">
+<img src="dev3.jpg">
+<h3>Lakum Mayank</h3>
+<p>Co-Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/mayank-lakum-493295352"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://github.com/Mayank-lakum"><i class="fab fa-github"></i></a>
+</div>
+</div>
+
+<div class="card team-card">
+<img src="dev4.jpg">
+<h3>Umar Chokhawala</h3>
+<p>Co-Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/muhammad-umar-421549395"><i class="fab fa-linkedin-in"></i></a>
+</div>
+</div>
+</div>
 </section>
 
-<!-- PRIVACY -->
+<!-- PRIVACY POLICY -->
 <section id="privacy">
-  <div class="legal-box">
-    <h2>Privacy Policy</h2>
+<div class="legal-box">
+<h2>Privacy Policy</h2>
 
-    <h3>1. Information We Collect</h3>
-    <ul>
-      <li>Account information (name, email, phone number, role)</li>
-      <li>Health information (symptoms, medical history, lab reports)</li>
-      <li>Usage data</li>
-      <li>Device information</li>
-    </ul>
+<h3>1. Information We Collect</h3>
+<p>We collect information you provide directly to us, such as:</p>
+<ul>
+<li>Account information (name, email, phone number, role)</li>
+<li>Health information you choose to share (symptoms, medical history, lab reports)</li>
+<li>Usage data (interactions with our platform, features used)</li>
+<li>Device information (IP address, browser type, operating system)</li>
+</ul>
 
-    <h3>2. How We Use Your Information</h3>
-    <ul>
-      <li>Provide and improve services</li>
-      <li>Power AI tools</li>
-      <li>Healthcare communication</li>
-      <li>Analytics & support</li>
-    </ul>
+<h3>2. How We Use Your Information</h3>
+<p>We use the information we collect to:</p>
+<ul>
+<li>Provide, maintain, and improve our services</li>
+<li>Power our AI tools</li>
+<li>Facilitate communication between patients, doctors, and healthcare providers</li>
+<li>Monitor and analyze usage and trends</li>
+<li>Respond to your comments and requests</li>
+</ul>
 
-    <h3>3. Information Sharing</h3>
-    <ul>
-      <li>With consent</li>
-      <li>With healthcare providers</li>
-      <li>Legal compliance</li>
-      <li>Security protection</li>
-    </ul>
+<h3>3. Information Sharing</h3>
+<ul>
+<li>With your consent</li>
+<li>With healthcare providers as part of your care</li>
+<li>With service providers</li>
+<li>To comply with legal obligations</li>
+<li>To protect rights, property, or safety</li>
+</ul>
 
-    <h3>4. AI and Data Processing</h3>
-    <p>AI outputs are informational only.</p>
+<h3>4. AI and Data Processing</h3>
+<p>AI outputs are informational only and not medical advice.</p>
 
-    <h3>5. Data Security</h3>
-    <p>Industry-standard safeguards applied.</p>
+<h3>5. Data Security</h3>
+<p>We apply appropriate technical and organizational measures.</p>
 
-    <h3>6. Your Choices</h3>
-    <ul>
-      <li>Access or delete data</li>
-      <li>Opt-out communications</li>
-    </ul>
+<h3>6. Your Choices</h3>
+<ul>
+<li>Access, update, or delete your data</li>
+<li>Opt-out of communications</li>
+<li>Request data deletion</li>
+</ul>
 
-    <h3>7. Children's Privacy</h3>
-    <p>Not intended for users under 16.</p>
+<h3>7. Children's Privacy</h3>
+<p>Not intended for individuals under 16.</p>
 
-    <h3>8. Changes to This Policy</h3>
-    <p>Updates posted here.</p>
+<h3>8. Changes to This Policy</h3>
+<p>Updates will be posted on this page.</p>
 
-    <h3>9. Contact Us</h3>
-    <p>noreply.nurocare@gmail.com</p>
-  </div>
+<h3>9. Contact Us</h3>
+<p>Email: <strong>noreply.nurocare@gmail.com</strong></p>
+
+<p><em>Note: This is a sample privacy policy. Consult a legal professional before deployment.</em></p>
+</div>
 </section>
 
 <!-- TERMS -->
 <section id="terms">
-  <div class="legal-box">
-    <h2>Terms of Service</h2>
+<div class="legal-box">
+<h2>Terms of Service</h2>
 
-    <h3>1. Acceptance of Terms</h3>
-    <p>By using NuroCare you agree to these Terms.</p>
+<h3>1. Acceptance of Terms</h3>
+<p>By using NuroCare, you agree to these Terms and the Privacy Policy.</p>
 
-    <h3>2. Description of Services</h3>
-    <p>AI-powered healthcare ecosystem.</p>
+<h3>2. Description of Services</h3>
+<p>NuroCare provides an AI-powered health ecosystem.</p>
 
-    <h3>3. User Responsibilities</h3>
-    <ul>
-      <li>Accurate info</li>
-      <li>Lawful use</li>
-      <li>Respect others</li>
-    </ul>
+<h3>3. User Responsibilities</h3>
+<ul>
+<li>Provide accurate information</li>
+<li>Use services lawfully</li>
+<li>Respect other users</li>
+</ul>
 
-    <h3>4. AI Tools Disclaimer</h3>
-    <ul>
-      <li>Not medical advice</li>
-      <li>Not for emergencies</li>
-    </ul>
+<h3>4. AI Tools Disclaimer</h3>
+<ul>
+<li>Not a substitute for professional medical advice</li>
+<li>Not for emergency use</li>
+<li>May not be 100% accurate</li>
+</ul>
 
-    <h3>5. Data Ownership</h3>
-    <p>You own your data.</p>
+<h3>5. Data Ownership and Use</h3>
+<p>You retain ownership of your data.</p>
 
-    <h3>6. Prohibited Activities</h3>
-    <ul>
-      <li>Illegal use</li>
-      <li>Unauthorized access</li>
-    </ul>
+<h3>6. Prohibited Activities</h3>
+<ul>
+<li>Illegal use</li>
+<li>Unauthorized access</li>
+<li>Malicious content</li>
+</ul>
 
-    <h3>7. Termination</h3>
-    <p>Accounts may be suspended.</p>
+<h3>7. Termination</h3>
+<p>Accounts may be suspended without notice.</p>
 
-    <h3>8. Disclaimers</h3>
-    <p>Provided “AS IS”.</p>
+<h3>8. Disclaimers</h3>
+<p>Services are provided “AS IS”.</p>
 
-    <h3>9. Limitation of Liability</h3>
-    <p>No indirect liability.</p>
+<h3>9. Limitation of Liability</h3>
+<p>No liability for indirect damages.</p>
 
-    <h3>10. Indemnification</h3>
-    <p>You indemnify NuroCare.</p>
+<h3>10. Indemnification</h3>
+<p>You agree to indemnify NuroCare.</p>
 
-    <h3>11. Governing Law</h3>
-    <p>Indian law.</p>
+<h3>11. Governing Law</h3>
+<p>Governed by the laws of India.</p>
 
-    <h3>12. Changes to Terms</h3>
-    <p>Posted on website.</p>
+<h3>12. Changes to Terms</h3>
+<p>Terms may be updated on the website.</p>
 
-    <h3>13. Contact</h3>
-    <p>noreply.nurocare@gmail.com</p>
-  </div>
+<h3>13. Contact Information</h3>
+<p>Email: <strong>noreply.nurocare@gmail.com</strong></p>
+
+<p><em>Note: Sample terms only. Consult legal counsel before launch.</em></p>
+</div>
 </section>
 
 <footer id="contact">
-  <div class="footer-grid">
-    <div>
-      <h4 class="footer-title">NuroCare</h4>
-      <p class="footer-item">AI-powered healthcare ecosystem</p>
-    </div>
+<div class="footer-grid">
+<div>
+<h4>NuroCare</h4>
+<p class="footer-item">AI-powered healthcare ecosystem</p>
+</div>
 
-    <div>
-      <h4 class="footer-title">Contact</h4>
-      <p class="footer-item">📍 Ahmedabad, Gujarat</p>
-      <p class="footer-item">📧 noreply.nurocare@gmail.com</p>
-      <p class="footer-item">📞 +91 7990632170</p>
-    </div>
+<div>
+<h4>Contact</h4>
+<p class="footer-item">📍 Ahmedabad, Gujarat</p>
+<p class="footer-item">📧 noreply.nurocare@gmail.com</p>
+<p class="footer-item">📞 +91 7990632170</p>
+</div>
 
-    <div>
-      <h4 class="footer-title">Social</h4>
-      <p class="footer-item"><a href="https://www.instagram.com/nurocare.health.in">Instagram</a></p>
-      <p class="footer-item"><a href="https://www.linkedin.com/in/fazilkhan-malek-392082377">LinkedIn</a></p>
-    </div>
-  </div>
+<div>
+<h4>Social</h4>
+<div class="footer-socials">
+<a href="https://www.instagram.com/nurocare.health.in"><i class="fab fa-instagram"></i></a>
+<a href="https://www.linkedin.com/in/fazilkhan-malek-392082377"><i class="fab fa-linkedin-in"></i></a>
+<a href="https://x.com/fazilkhanm0786"><i class="fab fa-twitter"></i></a>
+<a href="https://github.com/fazilkhanm0786"><i class="fab fa-github"></i></a>
+</div>
+</div>
+</div>
 
-  <div class="copyright">
-    © 2025 NuroCare Health Technologies Pvt Ltd. All rights reserved.
-  </div>
+<div class="copyright">
+© 2025 NuroCare Health Technologies Pvt Ltd. All rights reserved.
+</div>
 </footer>
 
 </body>
