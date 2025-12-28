@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NuroCare | AI-Powered Health Ecosystem</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -18,7 +18,6 @@
             --gradient: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
             --shadow-sm: 0 5px 15px rgba(0,0,0,0.05);
             --shadow-lg: 0 20px 40px rgba(14, 165, 233, 0.15);
-            --card-radius: 20px;
         }
 
         * {
@@ -35,7 +34,7 @@
             font-family: 'Poppins', sans-serif;
             color: var(--secondary);
             background-color: var(--light);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
@@ -60,22 +59,20 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0.8rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
             transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
         }
 
         nav.scrolled {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            padding: 0.8rem 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         /* --- LOGO STYLING --- */
@@ -90,8 +87,8 @@
         .logo-img {
             height: 50px; 
             width: auto;
-            border-radius: 12px; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border-radius: 15px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
 
@@ -108,7 +105,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.2rem;
+            gap: 2rem;
             list-style: none;
         }
 
@@ -118,14 +115,13 @@
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
-            padding: 5px 0;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            width: 0; height: 2.5px;
-            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            bottom: -5px; left: 0;
             background: var(--gradient);
             transition: width 0.3s;
         }
@@ -136,18 +132,13 @@
         .btn-nav {
             background: var(--gradient);
             color: white !important;
-            padding: 0.7rem 2rem;
+            padding: 0.6rem 1.8rem;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.25);
-            transition: transform 0.3s !important, box-shadow 0.3s !important;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            transition: transform 0.3s !important;
         }
         
-        .btn-nav:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
-        }
+        .btn-nav:hover { transform: scale(1.05); }
 
         /* --- Hero Section --- */
         .hero {
@@ -157,46 +148,24 @@
             justify-content: center;
             text-align: center;
             padding: 0 5%;
-            background: linear-gradient(rgba(255,255,255,0.92), rgba(240,249,255,0.88)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover fixed;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(240,249,255,0.85)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover fixed;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230ea5e9' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.3;
         }
 
         .hero-content {
             z-index: 1;
             max-width: 800px;
             animation: fadeInUp 1s ease-out;
-            position: relative;
         }
 
         .hero h1 {
-            font-size: 4.2rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
             font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .hero h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--dark-blue);
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
         }
 
         .hero p {
@@ -204,14 +173,11 @@
             margin-bottom: 2.5rem;
             color: #555;
             font-weight: 300;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .btn-main {
             display: inline-block;
-            padding: 1.3rem 3.2rem;
+            padding: 1.2rem 3rem;
             background: var(--gradient);
             color: white;
             text-decoration: none;
@@ -219,405 +185,152 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s;
-            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
             border: none;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-main::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(255,255,255,0.2);
-            transition: width 0.5s;
-            z-index: -1;
-        }
-
-        .btn-main:hover::before {
-            width: 100%;
         }
 
         .btn-main:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.45);
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.5);
         }
 
         /* --- Global Section Styles --- */
-        section { 
-            padding: 7rem 10%; 
-            position: relative;
-        }
+        section { padding: 6rem 10%; }
         
-        .section-title { 
-            text-align: center; 
-            margin-bottom: 4.5rem; 
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .section-title h2 { 
-            font-size: 2.9rem; 
-            margin-bottom: 0.8rem; 
-            color: var(--secondary);
-            font-weight: 700;
-        }
-
-        .section-title p { 
-            color: var(--accent); 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-size: 0.9rem;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
+        .section-title { text-align: center; margin-bottom: 4rem; }
+        .section-title h2 { font-size: 2.8rem; margin-bottom: 0.5rem; color: var(--secondary); }
+        .section-title p { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
 
         /* --- Cards & Interactions --- */
         .vision-grid, .dash-grid, .feature-grid, .team-grid {
             display: grid;
-            gap: 2.2rem;
+            gap: 2rem;
         }
         
-        .vision-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-        .dash-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-        .feature-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .team-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .vision-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .dash-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+        .feature-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .team-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
         .card-style {
             background: white;
-            padding: 2.4rem;
-            border-radius: var(--card-radius);
+            padding: 2rem;
+            border-radius: 20px;
             box-shadow: var(--shadow-sm);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.02);
             position: relative;
             overflow: hidden;
-        }
-
-        .card-style::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
-        }
-
-        .card-style:hover::before {
-            transform: scaleX(1);
         }
 
         .card-style:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: var(--shadow-lg);
-            border-color: rgba(14, 165, 233, 0.15);
+            border-color: rgba(14, 165, 233, 0.2);
         }
 
-        .vision-card i { 
-            font-size: 2.8rem; 
-            color: var(--primary); 
-            margin-bottom: 1.7rem; 
-            transition: transform 0.3s; 
-        }
+        .vision-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; transition: transform 0.3s; }
+        .vision-card:hover i { transform: scale(1.2) rotate(5deg); color: var(--accent); }
 
-        .vision-card:hover i { 
-            transform: scale(1.2) rotate(5deg); 
-            color: var(--accent); 
+        .dash-card { text-align: center; padding: 2rem 1.5rem; }
+        .dash-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0%; height: 4px;
+            background: var(--gradient);
+            transition: width 0.4s;
         }
-
-        .dash-card { 
-            text-align: center; 
-            padding: 2.2rem 1.8rem; 
-        }
+        .dash-card:hover::after { width: 100%; }
         
         .dash-icon {
-            width: 78px; 
-            height: 78px;
+            width: 70px; height: 70px;
             background: #e0f2fe;
             border-radius: 50%;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            margin: 0 auto 1.7rem;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
             color: var(--primary);
-            font-size: 2rem;
-            transition: all 0.4s;
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+            font-size: 1.8rem;
+            transition: all 0.3s;
         }
-
-        .dash-card:hover .dash-icon { 
-            background: var(--gradient); 
-            color: white; 
-            transform: rotateY(180deg); 
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
-        }
+        .dash-card:hover .dash-icon { background: var(--gradient); color: white; transform: rotateY(180deg); }
 
         /* AI Section (Dark) */
         .ai-section {
             background: var(--secondary);
             color: white;
             position: relative;
-            overflow: hidden;
         }
-
-        .ai-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(20,184,166,0.1) 0%, transparent 40%);
-            z-index: 0;
-        }
-
         .ai-section .section-title h2 { color: white; }
         
         .feature-box {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255,255,255,0.07);
-            padding: 2.4rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
             border-radius: 15px;
             transition: all 0.4s ease;
             backdrop-filter: blur(5px);
-            position: relative;
-            overflow: hidden;
         }
-
-        .feature-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--accent);
-            transition: height 0.4s;
-        }
-
-        .feature-box:hover::before {
-            height: 100%;
-        }
-
         .feature-box:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-10px);
             border-color: var(--accent);
             box-shadow: 0 10px 30px rgba(20, 184, 166, 0.2);
         }
-
-        .feature-box h4 { 
-            color: var(--accent); 
-            margin-bottom: 1rem; 
-            font-size: 1.3rem; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-        }
+        .feature-box h4 { color: var(--accent); margin-bottom: 0.8rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
 
         /* --- Team Section --- */
         .team-member {
             background: white;
-            border-radius: var(--card-radius);
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             transition: all 0.4s ease;
-            position: relative;
         }
-
-        .team-member::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
-        }
-
-        .team-member:hover::after {
-            transform: scaleX(1);
-        }
-
         .team-member:hover {
             transform: translateY(-15px);
             box-shadow: var(--shadow-lg);
         }
-
-        .member-img { 
-            width: 100%; 
-            height: 280px; 
-            object-fit: cover; 
-            transition: transform 0.6s; 
-            border-bottom: 1px solid rgba(14,165,233,0.1);
-        }
-
-        .team-member:hover .member-img { 
-            transform: scale(1.05); 
-        }
-
-        .member-info { 
-            padding: 1.8rem; 
-            text-align: center; 
-        }
-
-        .member-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-        }
-
-        .member-info p {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-        }
+        .member-img { width: 100%; height: 260px; object-fit: cover; transition: transform 0.5s; }
+        .team-member:hover .member-img { transform: scale(1.05); }
+        .member-info { padding: 1.5rem; text-align: center; }
         
-        /* Developer Social Links */
+        /* NEW: Developer Social Links */
         .dev-social {
             display: flex;
             justify-content: center;
-            gap: 18px;
-            margin-top: 18px;
-            padding-top: 18px;
-            border-top: 1px solid #eef2f7;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
         }
 
         .dev-social-link {
             color: #94a3b8;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
             text-decoration: none;
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
         }
 
         .dev-social-link:hover {
-            color: var(--white);
-            background: var(--primary);
+            color: var(--primary);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(14,165,233,0.2);
         }
 
         /* Tech Stack */
         .tech-icons {
-            display: flex; 
-            justify-content: center; 
-            gap: 5rem; 
-            flex-wrap: wrap; 
-            margin-top: 4rem;
+            display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin-top: 3rem;
         }
-
         .tech-item {
-            text-align: center; 
-            transition: transform 0.3s;
-            width: 120px;
+            text-align: center; transition: transform 0.3s;
         }
-
         .tech-item:hover { transform: translateY(-10px); }
-
         .tech-item i {
-            font-size: 3.8rem;
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
             background: -webkit-linear-gradient(#0ea5e9, #14b8a6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .tech-item p {
-            font-weight: 500;
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-
-        /* --- Privacy Policy & Terms Sections --- */
-        .legal-section {
-            background: #f8fafc;
-        }
-
-        .legal-section .section-title h2 {
-            color: var(--secondary);
-        }
-
-        .legal-content {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: var(--card-radius);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .legal-content h3 {
-            color: var(--primary);
-            margin: 2rem 0 1.2rem;
-            font-size: 1.6rem;
-            position: relative;
-            padding-bottom: 0.8rem;
-        }
-
-        .legal-content h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .legal-content p {
-            margin-bottom: 1.2rem;
-            line-height: 1.8;
-            color: #475569;
-        }
-
-        .legal-content ul {
-            padding-left: 1.8rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .legal-content li {
-            margin-bottom: 0.8rem;
-            line-height: 1.7;
-        }
-
-        .legal-content .last-updated {
-            font-style: italic;
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-top: 2rem;
-            text-align: right;
         }
 
         /* --- Footer & Contact --- */
@@ -630,155 +343,79 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 4rem;
-            margin-bottom: 3.5rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-col h3 { 
-            color: var(--accent); 
-            margin-bottom: 1.8rem; 
-            font-size: 1.5rem;
-            position: relative;
-            padding-bottom: 0.8rem;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .footer-col p { 
-            color: #cbd5e1; 
-            margin-bottom: 1.2rem;
-            line-height: 1.7;
-        }
+        .footer-col h3 { color: var(--accent); margin-bottom: 1.5rem; font-size: 1.4rem; }
+        .footer-col p { color: #94a3b8; margin-bottom: 1rem; }
         
-        .social-icons { 
-            margin-top: 1.8rem; 
-            display: flex; 
-            gap: 18px; 
-        }
-
+        .social-icons { margin-top: 1.5rem; display: flex; gap: 15px; }
         .social-btn {
-            width: 48px; 
-            height: 48px;
-            background: rgba(255,255,255,0.12);
+            width: 45px; height: 45px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             color: white;
             text-decoration: none;
             transition: all 0.3s;
-            font-size: 1.3rem;
-            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.2rem;
         }
-
-        .social-btn:hover { 
-            background: var(--primary); 
-            transform: translateY(-5px) rotate(360deg); 
-            border-color: transparent;
-            box-shadow: 0 8px 20px rgba(14,165,233,0.3);
-        }
+        .social-btn:hover { background: var(--primary); transform: translateY(-5px) rotate(360deg); }
 
         .contact-list li {
             list-style: none;
-            margin-bottom: 1.3rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: flex-start;
-            gap: 16px;
+            gap: 15px;
             color: #cbd5e1;
-            line-height: 1.6;
         }
+        .contact-list i { color: var(--primary); margin-top: 5px; }
 
-        .contact-list i { 
-            color: var(--primary); 
-            margin-top: 5px;
-            min-width: 20px;
-        }
-
-        .contact-form input, 
-        .contact-form textarea {
+        .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 14px 18px;
-            margin-bottom: 18px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.07);
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             color: white;
             font-family: inherit;
-            font-size: 1rem;
-            transition: border 0.3s, background 0.3s;
+            transition: border 0.3s;
         }
-
-        .contact-form input:focus, 
-        .contact-form textarea:focus {
+        .contact-form input:focus, .contact-form textarea:focus {
             outline: none;
             border-color: var(--primary);
             background: rgba(255,255,255,0.1);
-            box-shadow: 0 0 0 3px rgba(14,165,233,0.15);
-        }
-
-        .contact-form textarea {
-            min-height: 120px;
-            resize: vertical;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 2.5rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: #94a3b8;
-            font-size: 0.95rem;
+            color: #64748b;
+            font-size: 0.9rem;
         }
 
         .footer-logo-img {
-            height: 75px; 
+            height: 70px; 
             width: auto;
-            border-radius: 12px;
+            border-radius: 15px;
             background: white; 
-            padding: 6px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            .hero h1 { font-size: 3.5rem; }
-            section { padding: 6rem 7%; }
+            padding: 5px;
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0.9rem 5%; }
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 4rem 5%; }
             .nav-links { display: none; }
-            .hero { height: auto; padding-top: 8rem; padding-bottom: 4rem; }
-            .hero h1 { font-size: 2.8rem; }
-            .hero h2 { font-size: 1.6rem; }
-            .hero p { font-size: 1.2rem; }
-            section { padding: 5rem 5%; }
-            .section-title h2 { font-size: 2.4rem; }
-            .tech-icons { gap: 3rem; }
-            .legal-content { padding: 2rem; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2.4rem; }
-            .hero p { font-size: 1.1rem; }
-            .section-title h2 { font-size: 2.1rem; }
-            .btn-main { padding: 1.1rem 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav id="navbar">
         <a href="#" class="logo">
             <img src="PHOTO-2025-11-01-12-14-25.jpg" alt="NuroCare Logo" class="logo-img">
@@ -786,24 +423,22 @@
         </a>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#ecosystem">Ecosystem</a></li>
+            <li><a href="#ecosystem">Dashboards</a></li>
             <li><a href="#ai">AI Tools</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#contact" class="btn-nav">Book Demo</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>NuroCare AI</h1>
             <h2>Presented By T.E.C.H.O.C.O.R.E</h2>
-            <p>An AI-Driven Health Ecosystem Connecting Patients, Doctors, Labs, and Government in a unified platform.<br>Powered by Advanced AI to solve 98% of medical problems with a single click.</p>
+            <p>An AI-Driven Health Ecosystem Connecting Patients, Doctors, Labs, and Government in a unified ecosystem.<br>Powered by Advanced AI aim to solve 98% of medical problems at your one click.</p>
             <a href="#contact" class="btn-main">Get Early Access <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
-    <!-- Vision Section -->
     <section class="reveal">
         <div class="section-title">
             <p>The Concept</p>
@@ -828,7 +463,6 @@
         </div>
     </section>
 
-    <!-- Ecosystem Section -->
     <section id="ecosystem" style="background: #fafafa;" class="reveal">
         <div class="section-title">
             <p>14 Specialized Dashboards</p>
@@ -871,7 +505,7 @@
         <h3 style="margin-bottom: 1.5rem; color: #64748b;">Providers & Government</h3>
         <div class="dash-grid">
             <div class="dash-card card-style">
-                <div class="dash-icon"><i class="fas fa-flask"></i></form></div>
+                <div class="dash-icon"><i class="fas fa-flask"></i></div>
                 <h3>Lab</h3>
                 <p>Upload Digital Reports</p>
             </div>
@@ -893,7 +527,6 @@
         </div>
     </section>
 
-    <!-- AI Capabilities Section -->
     <section id="ai" class="ai-section reveal">
         <div class="section-title">
             <p>Intelligence</p>
@@ -927,7 +560,6 @@
         </div>
     </section>
 
-    <!-- Tech Stack Section -->
     <section class="reveal" style="text-align: center;">
         <div class="section-title">
             <p>Built With Modern Tech</p>
@@ -949,7 +581,6 @@
         </div>
     </section>
 
-    <!-- Team Section -->
     <section id="team" style="background: #fafafa;" class="reveal">
         <div class="section-title">
             <p>The Creators</p>
@@ -958,7 +589,7 @@
         <div class="team-grid">
             
             <div class="team-member">
-                <img src="dev1.jpg" alt="Developer 1" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=FazilKhan+Malek'">
+                <img src="dev1.jpg" alt="Developer 1" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=Developer+1'">
                 <div class="member-info">
                     <h3>FazilKhan Malek<br>C.E.O/Founder</h3>
                     <p style="color:var(--primary);">Full Stack Lead Developer & AI Engineer</p>
@@ -972,7 +603,7 @@
             </div>
 
             <div class="team-member">
-                <img src="dev2.jpg" alt="Developer 2" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=Modi+Manav'">
+                <img src="dev2.jpg" alt="Developer 2" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=Developer+2'">
                 <div class="member-info">
                     <h3>Modi Manav<br>Co-Founder</h3>
                     <p style="color:var(--primary);">Lead Frontend Designer, Flutter Developer & AI Engineer</p>
@@ -986,7 +617,7 @@
             </div>
 
             <div class="team-member">
-                <img src="dev3.jpg" alt="Developer 3" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=Lakum+Mayank'">
+                <img src="dev3.jpg" alt="Developer 3" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=Developer+3'">
                 <div class="member-info">
                     <h3>Lakum Mayank<br>Co-Founder</h3>
                     <p style="color:var(--primary);">Backend Specialist & Wordpress Master</p>
@@ -1000,7 +631,7 @@
             </div>
 
             <div class="team-member">
-                <img src="dev4.jpg" alt="Developer 4" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=Umar+Chokhawala'">
+                <img src="dev4.jpg" alt="Developer 4" class="member-img" onerror="this.src='https://via.placeholder.com/300x350?text=Developer+4'">
                 <div class="member-info">
                     <h3>Umar Chokhawala<br>Co-Founder</h3>
                     <p style="color:var(--primary);">Head Of Marketing & Management</p>
@@ -1016,115 +647,84 @@
         </div>
     </section>
 
-    <!-- Privacy Policy Section -->
-    <section id="privacy" class="legal-section reveal">
-        <div class="section-title">
-            <p>Legal</p>
-            <h2>Privacy Policy</h2>
-        </div>
-        <div class="legal-content">
-            <p class="last-updated"><strong>Last Updated:</strong> November 1, 2025</p>
-            
-            <p>At NuroCare Health Technologies, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services.</p>
-            
-            <h3>Information We Collect</h3>
-            <ul>
-                <li><strong>Personal Information:</strong> Name, email address, phone number, and other contact details you provide during registration or when contacting us.</li>
-                <li><strong>Health Information:</strong> Medical history, symptoms, test results, and other health-related data you input into the platform.</li>
-                <li><strong>Usage Data:</strong> IP address, device type, browser type, pages visited, and time spent on pages.</li>
-                <li><strong>Cookies:</strong> We use cookies and similar tracking technologies to enhance your experience.</li>
-            </ul>
-
-            <h3>How We Use Your Information</h3>
-            <p>We use the collected data to:</p>
-            <ul>
-                <li>Provide and improve our services</li>
-                <li>Personalize your experience</li>
-                <li>Communicate with you about our services</li>
-                <li>Comply with legal obligations</li>
-                <li>Prevent fraudulent activity</li>
-            </ul>
-
-            <h3>Data Security</h3>
-            <p>We implement industry-standard security measures including encryption, access controls, and regular security audits to protect your data. However, no internet transmission or electronic storage is 100% secure.</p>
-
-            <h3>Sharing Your Information</h3>
-            <p>We may share your information with:</p>
-            <ul>
-                <li>Healthcare providers and labs as necessary to deliver care</li>
-                <li>Government authorities as required by law</li>
-                <li>Service providers who assist us (under strict confidentiality agreements)</li>
-            </ul>
-
-            <h3>Your Rights</h3>
-            <p>Under applicable laws, you have the right to:</p>
-            <ul>
-                <li>Access the personal data we hold about you</li>
-                <li>Request correction of inaccurate data</li>
-                <li>Request deletion of your data (subject to legal constraints)</li>
-                <li>Object to our processing of your data</li>
-            </ul>
-
-            <h3>Changes to This Policy</h3>
-            <p>We may update this Privacy Policy periodically. We will notify you of any changes by posting the new policy on this page.</p>
-
-            <p>By using NuroCare, you consent to the terms of this Privacy Policy.</p>
-        </div>
-    </section>
-
-    <!-- Terms & Conditions Section -->
-    <section id="terms" class="legal-section reveal">
-        <div class="section-title">
-            <p>Legal</p>
-            <h2>Terms & Conditions</h2>
-        </div>
-        <div class="legal-content">
-            <p class="last-updated"><strong>Last Updated:</strong> November 1, 2025</p>
-            
-            <p>These Terms and Conditions ("Terms") govern your use of the NuroCare platform and services provided by NuroCare Health Technologies ("we," "us," or "our"). By accessing or using our services, you agree to be bound by these Terms.</p>
-
-            <h3>Acceptable Use</h3>
-            <p>You agree to use the services only for lawful purposes and in accordance with these Terms. You may not:</p>
-            <ul>
-                <li>Use the services in any way that violates applicable laws or regulations</li>
-                <li>Attempt to disrupt the services or gain unauthorized access</li>
-                <li>Transmit spam, chain letters, or unsolicited communications</li>
-                <li>Use the services to infringe on intellectual property rights</li>
-            </ul>
-
-            <h3>Intellectual Property</h3>
-            <p>All content on the NuroCare platform, including text, graphics, logos, images, and software, is the property of NuroCare or its licensors and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our permission.</p>
-
-            <h3>Disclaimers</h3>
-            <p><strong>Medical Disclaimer:</strong> The information provided by NuroCare, including AI-generated analysis, is for informational purposes only and does not constitute medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for medical concerns.</p>
-
-            <p>We make no warranties about the accuracy, reliability, completeness, or timeliness of the content. Your use of the services is at your sole risk.</p>
-
-            <h3>Limitation of Liability</h3>
-            <p>In no event shall NuroCare be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, arising out of or in connection with your use of the services, even if we have been advised of the possibility of such damage.</p>
-
-            <h3>Modifications</h3>
-            <p>We reserve the right to modify these Terms at any time. We will post the revised Terms on this page. Your continued use of the services after any such changes constitutes your acceptance of the new Terms.</p>
-
-            <h3>Governing Law</h3>
-            <p>These Terms are governed by and construed in accordance with the laws of India, without regard to its conflict of law principles.</p>
-
-            <p>If you have any questions about these Terms, please contact us at noreply.nurocare@gmail.com.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer id="contact">
         <div class="footer-grid">
             
             <div class="footer-col">
-                <div class="logo" style="margin-bottom: 1.5rem;">
+                <div class="logo" style="margin-bottom: 1rem;">
                     <img src="PHOTO-2025-11-01-12-14-25.jpg" alt="NuroCare Logo" class="footer-logo-img">
-                    <h3 class="logo-text" style="margin-top: 0.5rem; font-size: 1.8rem;">NuroCare</h3>
                 </div>
                 <p>The "Super App" for digital health. Revolutionizing patient care with Artificial Intelligence.</p>
                 
                 <div class="social-icons">
                     <a href="https://www.instagram.com/nurocare.health.in?igsh=emEzeWtqcTEwMmZl&utm_source=qr" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
                     <a href="https://x.com/fazilkhanm0786?s=21" target="_blank" class="social-btn"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/fazilkhan-malek-392082377?utm_source=
+                    <a href="https://www.linkedin.com/in/fazilkhan-malek-392082377?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Get in Touch</h3>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>TechoCore, Near Science City,<br>Sola, Ahmedabad, Gujarat, India</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 7990632170</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>noreply.nurocare@gmail.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Book a Demo</h3>
+                <p>Request a presentation for your hospital or organization.</p>
+                
+                <form class="contact-form" action="mailto:noreply.nurocare@gmail.com" method="post" enctype="text/plain">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="text" name="Organization" placeholder="Organization/Hospital">
+                    <textarea name="Message" rows="3" placeholder="I am interested in a demo..." required></textarea>
+                    <button type="submit" class="btn-main" style="width: 100%;">Send Request</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 NuroCare Health Technologies. Designed in Ahmedabad.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Animation
+        window.addEventListener('scroll', reveal);
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++){
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if(revealtop < windowheight - revealpoint){
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal(); // Trigger on load
+    </script>
+</body>
+</html>
