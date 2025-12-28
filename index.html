@@ -1,1631 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NuroCare | AI-Powered Health Ecosystem</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #0f172a;
-            --accent: #7c3aed;
-            --accent-light: #a855f7;
-            --light: #f8fafc;
-            --lighter: #ffffff;
-            --dark: #020617;
-            --gray: #64748b;
-            --gray-light: #94a3b8;
-            --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-            --gradient-light: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-            --border-radius-sm: 8px;
-            --border-radius-md: 12px;
-            --border-radius-lg: 16px;
-            --border-radius-xl: 24px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--dark);
-            background-color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-            opacity: 0;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .navbar.scrolled {
-            padding: 0.75rem 2rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            border-radius: var(--border-radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--dark);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: var(--transition);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius-lg);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius-lg);
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-description {
-            font-size: 1.125rem;
-            color: var(--gray-light);
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--dark);
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--dark);
-            border-radius: var(--border-radius-lg);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .btn-secondary:hover {
-            background: var(--dark);
-            color: white;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        .hero-image {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: var(--border-radius-xl);
-            box-shadow: var(--shadow-xl);
-            transform: rotate(3deg);
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 6rem 2rem;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: var(--gradient-light);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius-lg);
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--border-radius-xl);
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-light);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .feature-description {
-            color: var(--gray-light);
-            line-height: 1.6;
-        }
-
-        /* Ecosystem Section */
-        .ecosystem-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius-lg);
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .tab-button.active {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .tab-button:hover:not(.active) {
-            background: rgba(37, 99, 235, 0.2);
-        }
-
-        .ecosystem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .ecosystem-card {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--border-radius-xl);
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .ecosystem-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .ecosystem-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-light);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--primary);
-            font-size: 1.75rem;
-        }
-
-        .ecosystem-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .ecosystem-description {
-            color: var(--gray-light);
-            font-size: 0.95rem;
-        }
-
-        /* AI Section */
-        .ai-section {
-            background: linear-gradient(135deg, var(--secondary) 0%, #1e293b 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(37,99,235,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(124,58,237,0.1)"/><circle cx="60" cy="80" r="1" fill="rgba(37,99,235,0.1)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .ai-section .section-header {
-            color: white;
-        }
-
-        .ai-section .section-badge {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .ai-section .section-title {
-            color: white;
-        }
-
-        .ai-section .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .ai-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .ai-feature {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: var(--border-radius-xl);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .ai-feature:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .ai-feature-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .ai-feature-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .ai-feature-description {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .tech-item {
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .tech-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .tech-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-light);
-            border-radius: var(--border-radius-xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-size: 2.5rem;
-        }
-
-        .tech-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .tech-description {
-            color: var(--gray-light);
-            font-size: 0.95rem;
-        }
-
-        /* Team Section */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .team-card {
-            background: white;
-            border-radius: var(--border-radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .team-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .team-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .team-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .team-role {
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .team-description {
-            color: var(--gray-light);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-light);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--gradient);
-            color: white;
-        }
-
-        /* Policy Sections */
-        .policy-section {
-            background: var(--lighter);
-        }
-
-        .policy-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: var(--border-radius-xl);
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .policy-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .policy-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .policy-tag {
-            background: var(--gradient-light);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius-lg);
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .policy-content {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .policy-content h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 2rem 0 1rem;
-            color: var(--dark);
-        }
-
-        .policy-content p {
-            margin-bottom: 1rem;
-        }
-
-        .policy-content ul {
-            margin-bottom: 1rem;
-            padding-left: 1.5rem;
-        }
-
-        .policy-content li {
-            margin-bottom: 0.5rem;
-        }
-
-        .policy-note {
-            background: rgba(37, 99, 235, 0.05);
-            padding: 1rem;
-            border-radius: var(--border-radius-md);
-            margin-top: 2rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--secondary);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: var(--border-radius-lg);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 0.95rem;
-        }
-
-        .newsletter-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .newsletter-button {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius-lg);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .newsletter-button:hover {
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-copyright {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-legal a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .footer-legal a:hover {
-            color: white;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-cta {
-                justify-content: center;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section {
-                padding: 4rem 1rem;
-            }
-
-            .policy-container {
-                padding: 2rem;
-            }
-        }
-
-        /* Intersection Observer for Animations */
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-fade-in-up, .animate-fade-in').forEach(el => {
-            observer.observe(el);
-        });
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NuroCare | The Future of Healthcare Is Here</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+  --bg:#0a0e17;
+  --card:#11151f;
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --primary:#00d4ff;
+  --accent:#00ff9d;
+  --gradient:linear-gradient(135deg,#00d4ff,#00ff9d);
+  --glow:0 0 30px rgba(0,212,255,.35);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem 6%;
+  backdrop-filter:blur(20px);
+  background:rgba(10,14,23,.75);
+  border-bottom:1px solid rgba(0,212,255,.15);
+  z-index:1000;
+}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:1.9rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo img{height:48px;border-radius:14px;box-shadow:var(--glow)}
+.nav-links a{margin:0 1.3rem;color:var(--muted);font-weight:500}
+.btn-demo{padding:.8rem 1.8rem;border-radius:50px;background:var(--gradient);color:#000;font-weight:700}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  padding:0 6%;
+  background:linear-gradient(rgba(10,14,23,.92),rgba(10,14,23,.85)),
+  url('https://images.unsplash.com/photo-1576091160550-2173dba999ef') center/cover;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center;
+  max-width:1400px;
+  margin:auto;
+}
+.hero h1{
+  font-size:5rem;
+  line-height:1;
+  font-weight:900;
+  background:var(--gradient);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero h2{color:var(--primary);margin:1.2rem 0}
+.hero p{color:var(--muted);font-size:1.2rem;max-width:560px}
+.btn-hero{
+  display:inline-block;margin-top:2.5rem;
+  padding:1.3rem 3.4rem;
+  border-radius:60px;
+  background:var(--gradient);
+  color:#000;font-weight:800;
+  box-shadow:var(--glow);
+}
+.floating-card{
+  background:rgba(17,21,31,.65);
+  border:1px solid rgba(0,212,255,.25);
+  padding:3rem;
+  border-radius:30px;
+  box-shadow:var(--glow);
+  animation:float 7s ease-in-out infinite;
+}
+@keyframes float{
+  50%{transform:translateY(-25px)}
+}
+
+/* SECTIONS */
+section{padding:9rem 6%}
+.section-title{text-align:center;margin-bottom:5rem}
+.section-title p{color:var(--primary);letter-spacing:4px;font-weight:700}
+.section-title h2{
+  font-size:3.6rem;font-weight:900;
+  background:var(--gradient);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ECOSYSTEM */
+.ecosystem-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+}
+.eco-card{
+  background:var(--card);
+  border:1px solid rgba(0,212,255,.18);
+  padding:2.4rem;
+  border-radius:26px;
+  transition:.5s;
+}
+.eco-card:hover{transform:translateY(-18px);box-shadow:var(--glow)}
+.eco-icon{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(0,212,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;color:var(--primary);margin-bottom:1.3rem;
+}
+
+/* AI */
+.ai-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:2rem;
+}
+.ai-card{
+  background:rgba(17,21,31,.6);
+  border:1px solid rgba(0,212,255,.22);
+  padding:2.5rem;border-radius:26px;
+}
+.ai-card h3{color:var(--accent);margin:1rem 0}
+
+/* TEAM */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2.4rem;
+}
+.team-card{
+  background:var(--card);
+  border-radius:26px;
+  overflow:hidden;
+  transition:.5s;
+}
+.team-card:hover{transform:translateY(-18px);box-shadow:var(--glow)}
+.team-card img{width:100%;height:300px;object-fit:cover}
+.team-info{text-align:center;padding:2rem}
+.team-role{color:var(--primary);margin:.6rem 0}
+.socials a{margin:0 .4rem;color:var(--primary)}
+
+/* LEGAL */
+.legal{
+  background:linear-gradient(135deg,#0f172a,#11151f);
+}
+.legal-box{
+  max-width:1000px;
+  margin:auto;
+  background:rgba(17,21,31,.75);
+  border:1px solid rgba(0,212,255,.25);
+  padding:4rem;
+  border-radius:30px;
+  box-shadow:var(--glow);
+}
+
+/* FOOTER */
+footer{
+  padding:7rem 6% 4rem;
+  background:#060a10;
+  border-top:1px solid rgba(0,212,255,.15);
+}
+footer .cta{
+  text-align:center;font-size:4rem;font-weight:900;color:var(--accent)
+}
+footer .copyright{
+  margin-top:4rem;text-align:center;color:#64748b
+}
+
+@media(max-width:900px){
+.hero-grid{grid-template-columns:1fr;text-align:center}
+.hero h1{font-size:3.6rem}
+}
+</style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">NC</div>
-                <span class="logo-text">NuroCare</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#ecosystem">Ecosystem</a></li>
-                <li><a href="#ai">AI Tools</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#privacy">Privacy</a></li>
-                <li><a href="#terms">Terms</a></li>
-                <li><a href="#contact" class="btn-primary">Book Demo</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">AI-Powered Health Ecosystem</div>
-                <h1 class="hero-title font-serif">Revolutionizing Healthcare with AI</h1>
-                <p class="hero-subtitle">Presented by T.E.C.H.O.C.O.R.E</p>
-                <p class="hero-description">
-                    NuroCare connects patients, doctors, labs, and government in a unified AI-driven ecosystem.
-                    Our advanced AI tools solve 98% of medical problems at your fingertips.
-                </p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn-primary">Get Early Access</a>
-                    <a href="#ecosystem" class="btn-secondary">Explore Ecosystem</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">14+</div>
-                        <div class="stat-label">Specialized Dashboards</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">AI Problem Solving</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">1M+</div>
-                        <div class="stat-label">Potential Users</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Healthcare professional using NuroCare">
-            </div>
-        </div>
-    </section>
+<nav>
+  <div class="logo">
+    <img src="PHOTO-2025-11-01-12-14-25.jpg">
+    NuroCare
+  </div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#ecosystem">Ecosystem</a>
+    <a href="#ai">AI</a>
+    <a href="#team">Team</a>
+    <a href="#privacy">Legal</a>
+    <a href="#contact" class="btn-demo">Book Demo</a>
+  </div>
+</nav>
 
-    <!-- Vision Section -->
-    <section class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-badge">Our Vision</div>
-                <h2 class="section-title font-serif">What Makes NuroCare Different?</h2>
-                <p class="section-subtitle">A unified platform that adapts to every healthcare stakeholder's needs</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card animate-fade-in-up">
-                    <div class="feature-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3 class="feature-title">Unified Platform</h3>
-                    <p class="feature-description">
-                        One app that transforms based on your role. Patients see their health records, doctors manage their clinic panel, labs upload reports - all in one seamless experience.
-                    </p>
-                </div>
-                <div class="feature-card animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="feature-title">AI-Driven Care</h3>
-                    <p class="feature-description">
-                        Advanced AI handles complex data analysis, from symptom interpretation to report summarization, so healthcare professionals can focus on patient care.
-                    </p>
-                </div>
-                <div class="feature-card animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="feature-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3 class="feature-title">Total Connectivity</h3>
-                    <p class="feature-description">
-                        Real-time data flow between hospitals, pharmacies, labs, insurance providers, and government agencies eliminates delays and improves coordination.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="hero" id="home">
+<div class="hero-grid">
+<div>
+<h1>Healthcare<br>Reimagined<br>With AI</h1>
+<h2>One Platform • 14 Roles • Zero Friction</h2>
+<p>The world’s first adaptive health super-app connecting patients, doctors, labs, pharmacies, insurers & government.</p>
+<a class="btn-hero" href="#contact">Request Early Access →</a>
+</div>
+<div class="floating-card">
+<h3>98% problems solved instantly</h3>
+<p>Multimodal AI trained on Indian healthcare data.</p>
+</div>
+</div>
+</section>
 
-    <!-- Ecosystem Section -->
-    <section id="ecosystem" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-badge">Ecosystem</div>
-                <h2 class="section-title font-serif">14 Specialized Dashboards</h2>
-                <p class="section-subtitle">Tailored experiences for every healthcare participant</p>
-            </div>
-            <div class="ecosystem-tabs">
-                <button class="tab-button active" data-tab="care-seekers">Care Seekers</button>
-                <button class="tab-button" data-tab="professionals">Medical Professionals</button>
-                <button class="tab-button" data-tab="providers">Providers & Government</button>
-            </div>
-            <div class="ecosystem-grid">
-                <!-- Care Seekers -->
-                <div class="ecosystem-card tab-content active" data-tab="care-seekers">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-user-injured"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Patient Dashboard</h3>
-                    <p class="ecosystem-description">Book appointments, access medical records, and use AI health tools</p>
-                </div>
-                <div class="ecosystem-card tab-content active" data-tab="care-seekers">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Caregiver Dashboard</h3>
-                    <p class="ecosystem-description">Monitor and manage health for elderly or dependent family members</p>
-                </div>
+<section id="ecosystem">
+<div class="section-title">
+<p>14 Dashboards</p>
+<h2>Complete Ecosystem</h2>
+</div>
+<div class="ecosystem-grid">
+<div class="eco-card"><div class="eco-icon"><i class="fas fa-user-injured"></i></div><h3>Patient</h3><p>Appointments • Reports • AI Health Tools</p></div>
+<div class="eco-card"><div class="eco-icon"><i class="fas fa-wallet"></i></div><h3>Health Wallet</h3><p>Medical records, prescriptions, insurance documents</p></div>
+<div class="eco-card"><div class="eco-icon"><i class="fas fa-user-md"></i></div><h3>Doctor</h3><p>E-prescriptions • AI diagnosis • Voice notes</p></div>
+<div class="eco-card"><div class="eco-icon"><i class="fas fa-flask"></i></div><h3>Lab</h3><p>Digital reports • AI analysis</p></div>
+<div class="eco-card"><div class="eco-icon"><i class="fas fa-pills"></i></div><h3>Pharmacy</h3><p>E-prescription fulfillment</p></div>
+<div class="eco-card"><div class="eco-icon"><i class="fas fa-shield-alt"></i></div><h3>Insurance</h3><p>Claims • Fraud detection</p></div>
+<div class="eco-card"><div class="eco-icon"><i class="fas fa-landmark"></i></div><h3>Government</h3><p>Epidemic heatmaps • Resource AI</p></div>
+</div>
+</section>
 
-                <!-- Medical Professionals -->
-                <div class="ecosystem-card tab-content" data-tab="professionals">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Doctor Dashboard</h3>
-                    <p class="ecosystem-description">Manage consultations, e-prescriptions, and patient records</p>
-                </div>
-                <div class="ecosystem-card tab-content" data-tab="professionals">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-venus"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Gynecologist Dashboard</h3>
-                    <p class="ecosystem-description">Specialized tools for period, fertility, and PCOS tracking</p>
-                </div>
-                <div class="ecosystem-card tab-content" data-tab="professionals">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Vedya Dashboard</h3>
-                    <p class="ecosystem-description">Ayurvedic dosha analysis and personalized wellness plans</p>
-                </div>
+<section id="ai">
+<div class="section-title">
+<p>Intelligence</p>
+<h2>AI Capabilities</h2>
+</div>
+<div class="ai-grid">
+<div class="ai-card"><h3>Symptom Analyzer</h3><p>Instant medical insights</p></div>
+<div class="ai-card"><h3>Report Summarizer</h3><p>Complex reports → simple language</p></div>
+<div class="ai-card"><h3>Medicine Scanner</h3><p>Identify pills via camera</p></div>
+<div class="ai-card"><h3>Voice-to-Symptom</h3><p>22+ Indian languages supported</p></div>
+<div class="ai-card"><h3>Diet Generator</h3><p>Personalized nutrition plans</p></div>
+<div class="ai-card"><h3>Resource AI</h3><p>Predict outbreaks & shortages</p></div>
+</div>
+</section>
 
-                <!-- Providers & Government -->
-                <div class="ecosystem-card tab-content" data-tab="providers">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Lab Dashboard</h3>
-                    <p class="ecosystem-description">Upload and manage digital lab reports with AI assistance</p>
-                </div>
-                <div class="ecosystem-card tab-content" data-tab="providers">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-pills"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Pharmacy Dashboard</h3>
-                    <p class="ecosystem-description">Receive and fulfill e-prescriptions with inventory management</p>
-                </div>
-                <div class="ecosystem-card tab-content" data-tab="providers">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Government Dashboard</h3>
-                    <p class="ecosystem-description">Epidemic heatmaps and resource allocation tools</p>
-                </div>
-                <div class="ecosystem-card tab-content" data-tab="providers">
-                    <div class="ecosystem-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="ecosystem-title">Insurance Dashboard</h3>
-                    <p class="ecosystem-description">AI-powered fraud detection and claims processing</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="team">
+<div class="section-title">
+<p>Builders</p>
+<h2>Meet the Team</h2>
+</div>
+<div class="team-grid">
+<div class="team-card">
+<img src="dev1.jpg">
+<div class="team-info">
+<h3>FazilKhan Malek</h3>
+<p class="team-role">CEO / Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/fazilkhan-malek-392082377"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/fazilkhanm0786"><i class="fab fa-github"></i></a>
+<a href="https://portfolio-fazilkhan-malek.vercel.app/"><i class="fas fa-globe"></i></a>
+</div>
+</div>
+</div>
 
-    <!-- AI Section -->
-    <section id="ai" class="ai-section section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-badge">Intelligence</div>
-                <h2 class="section-title font-serif">AI Capabilities</h2>
-                <p class="section-subtitle">Transforming healthcare with cutting-edge artificial intelligence</p>
-            </div>
-            <div class="ai-features">
-                <div class="ai-feature animate-fade-in-up">
-                    <div class="ai-feature-icon">
-                        <i class="fas fa-stethoscope"></i>
-                    </div>
-                    <h3 class="ai-feature-title">Symptom Analyzer</h3>
-                    <p class="ai-feature-description">
-                        Input your symptoms and receive instant analysis of potential conditions with urgency recommendations.
-                    </p>
-                </div>
-                <div class="ai-feature animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="ai-feature-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3 class="ai-feature-title">Report Summarizer</h3>
-                    <p class="ai-feature-description">
-                        Upload complex lab reports and get clear, concise summaries in simple language you can understand.
-                    </p>
-                </div>
-                <div class="ai-feature animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="ai-feature-icon">
-                        <i class="fas fa-camera"></i>
-                    </div>
-                    <h3 class="ai-feature-title">Medicine Identifier</h3>
-                    <p class="ai-feature-description">
-                        Scan any pill to instantly identify its name, usage instructions, and potential side effects.
-                    </p>
-                </div>
-                <div class="ai-feature animate-fade-in-up" style="animation-delay: 0.3s;">
-                    <div class="ai-feature-icon">
-                        <i class="fas fa-apple-alt"></i>
-                    </div>
-                    <h3 class="ai-feature-title">Diet Generator</h3>
-                    <p class="ai-feature-description">
-                        Receive personalized meal plans based on your BMI, diabetes status, and cultural preferences.
-                    </p>
-                </div>
-                <div class="ai-feature animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="ai-feature-icon">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <h3 class="ai-feature-title">Voice-to-Symptom</h3>
-                    <p class="ai-feature-description">
-                        Describe your symptoms in your local language - no typing required.
-                    </p>
-                </div>
-                <div class="ai-feature animate-fade-in-up" style="animation-delay: 0.5s;">
-                    <div class="ai-feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="ai-feature-title">Resource AI</h3>
-                    <p class="ai-feature-description">
-                        Predicts hospital bed shortages and disease outbreaks for government planning.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="team-card">
+<img src="dev2.jpg">
+<div class="team-info">
+<h3>Modi Manav</h3>
+<p class="team-role">Co-Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/modi-manav-n-537134339"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/modimanav07"><i class="fab fa-github"></i></a>
+</div>
+</div>
+</div>
 
-    <!-- Tech Stack Section -->
-    <section class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-badge">Technology</div>
-                <h2 class="section-title font-serif">Built with Modern Tech</h2>
-                <p class="section-subtitle">A robust architecture designed for security, scalability, and performance</p>
-            </div>
-            <div class="tech-stack">
-                <div class="tech-item animate-fade-in">
-                    <div class="tech-icon">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <h3 class="tech-title">Python FastAPI</h3>
-                    <p class="tech-description">High-performance AI backend</p>
-                </div>
-                <div class="tech-item animate-fade-in" style="animation-delay: 0.1s;">
-                    <div class="tech-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="tech-title">Flutter</h3>
-                    <p class="tech-description">Cross-platform mobile app</p>
-                </div>
-                <div class="tech-item animate-fade-in" style="animation-delay: 0.2s;">
-                    <div class="tech-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3 class="tech-title">Supabase</h3>
-                    <p class="tech-description">Secure database & authentication</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="team-card">
+<img src="dev3.jpg">
+<div class="team-info">
+<h3>Lakum Mayank</h3>
+<p class="team-role">Co-Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/mayank-lakum-493295352"><i class="fab fa-linkedin"></i></a>
+<a href="https://github.com/Mayank-lakum"><i class="fab fa-github"></i></a>
+</div>
+</div>
+</div>
 
-    <!-- Team Section -->
-    <section id="team" class="section">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-badge">Our Team</div>
-                <h2 class="section-title font-serif">Meet the Developers</h2>
-                <p class="section-subtitle">The passionate team behind NuroCare's innovation</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-card animate-fade-in-up">
-                    <img src="dev1.jpg" alt="FazilKhan Malek" class="team-image" onerror="this.src='https://via.placeholder.com/300x300?text=FazilKhan+Malek'">
-                    <div class="team-info">
-                        <h3 class="team-name">FazilKhan Malek</h3>
-                        <p class="team-role">C.E.O / Founder</p>
-                        <p class="team-description">Full Stack Lead Developer & AI Engineer</p>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/fazilkhan-malek-392082377" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/fazilkhanm0786" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://portfolio-fazilkhan-malek.vercel.app/" class="social-link" title="Portfolio">
-                                <i class="fas fa-globe"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-card animate-fade-in-up" style="animation-delay: 0.1s;">
-                    <img src="dev2.jpg" alt="Modi Manav" class="team-image" onerror="this.src='https://via.placeholder.com/300x300?text=Modi+Manav'">
-                    <div class="team-info">
-                        <h3 class="team-name">Modi Manav</h3>
-                        <p class="team-role">Co-Founder</p>
-                        <p class="team-description">Lead Frontend Designer & Flutter Developer</p>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/modi-manav-n-537134339" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/modimanav07" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="#" class="social-link" title="Portfolio">
-                                <i class="fas fa-globe"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-card animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <img src="dev3.jpg" alt="Lakum Mayank" class="team-image" onerror="this.src='https://via.placeholder.com/300x300?text=Lakum+Mayank'">
-                    <div class="team-info">
-                        <h3 class="team-name">Lakum Mayank</h3>
-                        <p class="team-role">Co-Founder</p>
-                        <p class="team-description">Backend Specialist & WordPress Master</p>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/mayank-lakum-493295352" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/Mayank-lakum" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="#" class="social-link" title="Portfolio">
-                                <i class="fas fa-globe"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-card animate-fade-in-up" style="animation-delay: 0.3s;">
-                    <img src="dev4.jpg" alt="Umar Chokhawala" class="team-image" onerror="this.src='https://via.placeholder.com/300x300?text=Umar+Chokhawala'">
-                    <div class="team-info">
-                        <h3 class="team-name">Umar Chokhawala</h3>
-                        <p class="team-role">Co-Founder</p>
-                        <p class="team-description">Head of Marketing & Management</p>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/muhammad-umar-421549395" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="#" class="social-link" title="Portfolio">
-                                <i class="fas fa-globe"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="team-card">
+<img src="dev4.jpg">
+<div class="team-info">
+<h3>Umar Chokhawala</h3>
+<p class="team-role">Co-Founder</p>
+<div class="socials">
+<a href="https://www.linkedin.com/in/muhammad-umar-421549395"><i class="fab fa-linkedin"></i></a>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- Privacy Policy Section -->
-    <section id="privacy" class="section policy-section">
-        <div class="section-container">
-            <div class="policy-container">
-                <h2 class="policy-title font-serif">Privacy Policy</h2>
-                <div class="policy-meta">
-                    <span class="policy-tag">Effective: November 2023</span>
-                    <span class="policy-tag">Ahmedabad, Gujarat, India</span>
-                </div>
-                <div class="policy-content">
-                    <p>
-                        NuroCare ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI-powered health ecosystem platform.
-                    </p>
+<section id="privacy" class="legal">
+<div class="legal-box">
+<h2>Privacy Policy</h2>
+<p>Your data stays encrypted, private & India-compliant.</p>
+</div>
+</section>
 
-                    <h3>1. Information We Collect</h3>
-                    <p>We collect information you provide directly to us, such as:</p>
-                    <ul>
-                        <li>Account information (name, email, phone number, role)</li>
-                        <li>Health information you choose to share (symptoms, medical history, lab reports)</li>
-                        <li>Usage data (interactions with our platform, features used)</li>
-                        <li>Device information (IP address, browser type, operating system)</li>
-                    </ul>
+<footer id="contact">
+<div class="cta">Ready to Change Healthcare Forever?</div>
+<div class="copyright">© 2025 NuroCare Health Technologies Pvt Ltd • Ahmedabad, India</div>
+</footer>
 
-                    <h3>2. How We Use Your Information</h3>
-                    <p>We use the information we collect to:</p>
-                    <ul>
-                        <li>Provide, maintain, and improve our services</li>
-                        <li>Power our AI tools (symptom analysis, report summarization, etc.)</li>
-                        <li>Facilitate communication between patients, doctors, and healthcare providers</li>
-                        <li>Monitor and analyze usage and trends to improve user experience</li>
-                        <li>Respond to your comments, questions, and requests</li>
-                    </ul>
-
-                    <h3>3. Information Sharing</h3>
-                    <p>
-                        We may share information with third parties in the following circumstances:
-                    </p>
-                    <ul>
-                        <li>With your consent or at your direction</li>
-                        <li>With healthcare providers as part of your care (with your permission)</li>
-                        <li>With service providers who perform services on our behalf</li>
-                        <li>To comply with legal obligations or respond to legal process</li>
-                        <li>To protect the rights, property, or safety of NuroCare, our users, or others</li>
-                    </ul>
-
-                    <h3>4. AI and Data Processing</h3>
-                    <p>
-                        Our AI tools process health information you provide to generate insights, summaries, and recommendations. These AI outputs are for informational purposes only and should not be considered medical advice.
-                    </p>
-
-                    <h3>5. Data Security</h3>
-                    <p>
-                        We implement appropriate technical and organizational measures to protect your information. However, no method of transmission over the internet or electronic storage is 100% secure.
-                    </p>
-
-                    <h3>6. Your Choices</h3>
-                    <p>You may:</p>
-                    <ul>
-                        <li>Access, update, or delete your account information</li>
-                        <li>Opt-out of certain communications</li>
-                        <li>Request deletion of your personal data (subject to legal requirements)</li>
-                    </ul>
-
-                    <h3>7. Children's Privacy</h3>
-                    <p>
-                        Our services are not directed to individuals under 13. We do not knowingly collect personal information from children under 13.
-                    </p>
-
-                    <h3>8. Changes to This Policy</h3>
-                    <p>
-                        We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
-                    </p>
-
-                    <h3>9. Contact Us</h3>
-                    <p>
-                        If you have any questions about this Privacy Policy, please contact us at:
-                        <br><strong>noreply.nurocare@gmail.com</strong>
-                        <br><strong>+91 7990632170</strong>
-                    </p>
-
-                    <div class="policy-note">
-                        <p>
-                            <strong>Note:</strong> This is a sample privacy policy based on the features described in your platform. For actual deployment, consult with a legal professional to ensure compliance with applicable laws and regulations.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Terms of Service Section -->
-    <section id="terms" class="section policy-section">
-        <div class="section-container">
-            <div class="policy-container">
-                <h2 class="policy-title font-serif">Terms of Service</h2>
-                <div class="policy-meta">
-                    <span class="policy-tag">Effective: November 2023</span>
-                    <span class="policy-tag">Ahmedabad, Gujarat, India</span>
-                </div>
-                <div class="policy-content">
-                    <p>
-                        Welcome to NuroCare. By accessing or using our services, you agree to be bound by these Terms of Service ("Terms"). Please read them carefully.
-                    </p>
-
-                    <h3>1. Acceptance of Terms</h3>
-                    <p>
-                        By accessing or using the NuroCare platform, you agree to these Terms and our Privacy Policy. If you do not agree, do not use our services.
-                    </p>
-
-                    <h3>2. Description of Services</h3>
-                    <p>
-                        NuroCare provides an AI-powered health ecosystem that connects patients, doctors, labs, pharmacies, insurance providers, and government agencies through specialized dashboards and AI tools.
-                    </p>
-
-                    <h3>3. User Responsibilities</h3>
-                    <p>You agree to:</p>
-                    <ul>
-                        <li>Provide accurate and complete information</li>
-                        <li>Use the services only for lawful purposes</li>
-                        <li>Not interfere with or disrupt the services</li>
-                        <li>Comply with all applicable laws and regulations</li>
-                        <li>Respect the privacy and rights of other users</li>
-                    </ul>
-
-                    <h3>4. AI Tools Disclaimer</h3>
-                    <p>
-                        Our AI tools (symptom analyzer, report summarizer, etc.) are for informational purposes only and:
-                    </p>
-                    <ul>
-                        <li>Are not a substitute for professional medical advice, diagnosis, or treatment</li>
-                        <li>Should not be used for emergency medical situations</li>
-                        <li>May not be 100% accurate</li>
-                    </ul>
-                    <p>
-                        Always consult a qualified healthcare provider for medical concerns.
-                    </p>
-
-                    <h3>5. Data Ownership and Use</h3>
-                    <p>
-                        You retain ownership of your data. By using our services, you grant us a license to use, process, and store your data as necessary to provide the services.
-                    </p>
-
-                    <h3>6. Prohibited Activities</h3>
-                    <p>You may not:</p>
-                    <ul>
-                        <li>Use the services for any illegal purpose</li>
-                        <li>Attempt to gain unauthorized access to our systems</li>
-                        <li>Upload or transmit viruses or malicious code</li>
-                        <li>Impersonate another person or entity</li>
-                        <li>Interfere with other users' use of the services</li>
-                        <li>Sell, transfer, or commercialize user accounts</li>
-                    </ul>
-
-                    <h3>7. Termination</h3>
-                    <p>
-                        We may terminate or suspend your account at any time, without notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties.
-                    </p>
-
-                    <h3>8. Disclaimers</h3>
-                    <p>
-                        THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE". WE DISCLAIM ALL WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-                    </p>
-
-                    <h3>9. Limitation of Liability</h3>
-                    <p>
-                        TO THE FULLEST EXTENT PERMITTED BY LAW, NUROCARE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUE.
-                    </p>
-
-                    <h3>10. Indemnification</h3>
-                    <p>
-                        You agree to defend, indemnify, and hold harmless NuroCare and its affiliates, officers, directors, employees, and agents from and against any and all claims, liabilities, damages, losses, or expenses arising out of or in any way connected with your access to or use of the services.
-                    </p>
-
-                    <h3>11. Governing Law</h3>
-                    <p>
-                        These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.
-                    </p>
-
-                    <h3>12. Changes to Terms</h3>
-                    <p>
-                        We reserve the right to modify these Terms at any time. We will provide notice of material changes by posting the new Terms on our website.
-                    </p>
-
-                    <h3>13. Contact Information</h3>
-                    <p>
-                        For questions about these Terms, please contact:
-                        <br><strong>noreply.nurocare@gmail.com</strong>
-                        <br><strong>+91 7990632170</strong>
-                    </p>
-
-                    <div class="policy-note">
-                        <p>
-                            <strong>Note:</strong> These Terms of Service are provided as a sample based on your platform's features. For actual deployment, consult with a legal professional to ensure they meet all legal requirements.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <div class="logo" style="margin-bottom: 1rem;">
-                    <div class="logo-icon">NC</div>
-                    <span class="logo-text" style="color: white;">NuroCare</span>
-                </div>
-                <p>The AI-powered health ecosystem connecting patients, providers, and institutions.</p>
-                <div class="social-links" style="margin-top: 1.5rem;">
-                    <a href="https://www.instagram.com/nurocare.health.in" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://x.com/fazilkhanm0786" class="social-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/fazilkhan-malek-392082377" class="social-link">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#ecosystem">Ecosystem</a></li>
-                    <li><a href="#ai">AI Tools</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <span>TechoCore, Near Science City<br>Sola, Ahmedabad, Gujarat, India</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <span>+91 7990632170</span>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <span>noreply.nurocare@gmail.com</span>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Newsletter</h3>
-                <p>Stay updated with NuroCare's latest developments and features.</p>
-                <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Your email address">
-                    <button type="submit" class="newsletter-button">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="footer-copyright">
-                &copy; 2025 NuroCare Health Technologies. All rights reserved.
-            </div>
-            <div class="footer-legal">
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Tab functionality for ecosystem section
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                document.querySelectorAll('.tab-button').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-
-                // Add active class to clicked button
-                button.classList.add('active');
-
-                // Hide all tab content
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.style.display = 'none';
-                });
-
-                // Show content for selected tab
-                const tabId = button.getAttribute('data-tab');
-                document.querySelectorAll(`.tab-content[data-tab="${tabId}"]`).forEach(content => {
-                    content.style.display = 'block';
-                });
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-fade-in-up, .animate-fade-in').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
