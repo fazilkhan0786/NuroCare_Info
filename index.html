@@ -492,6 +492,23 @@ NuroCare
 </div>
 </section>
 
+<!-- ================= MESSAGE US SECTION ================= -->
+<section id="contact">
+  <div class="section-title">
+    <p>Contact</p>
+    <h2>Message Us</h2>
+  </div>
+
+  <div class="legal-box">
+    <form id="contactForm" class="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message →</button>
+    </form>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer id="contact">
 <div class="footer-grid">
@@ -521,6 +538,28 @@ NuroCare
 © 2025 T.E.C.H.O.C.O.R.E Pvt Ltd. All rights reserved.
 </div>
 </footer>
+
+<!-- ================= EMAILJS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+emailjs.init("gKKwcSILUgXua2yH9");
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  emailjs.send("service_23jhgcg","template_w5jw9pf",{
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value
+  }).then(()=>{
+    alert("Message sent successfully!");
+    document.getElementById("contactForm").reset();
+  },(error)=>{
+    alert("Failed to send message. Please try again.");
+    console.error(error);
+  });
+});
+</script>
 
 </body>
 </html>
